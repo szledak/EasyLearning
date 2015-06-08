@@ -46,16 +46,19 @@ void MainWindow::on_btnSelectDB_clicked()
     QTextStream in(&file);
     QStringList fields;
 
+    int k = 0;
+
     while(!in.atEnd()) {
         QString line = in.readLine();
         fields = line.split(" ");
 
         for(int i = 0; i < fields.size(); i++){
             QStandardItem *item = new QStandardItem(fields.at(i));
-            tvModel->setItem(0, i, item);
-            tvModel->setItem(1, i, item);
-        }
+            tvModel->setItem(k, i, item);
+            //tvModel->setItem(1+k, i, item);
 
+        }
+        k++;
     }
 
     file.close();
