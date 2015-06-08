@@ -32,7 +32,6 @@ private:
     Ui::MainWindow *ui;
     QStringListModel *model;
     QStringList list;
-    QMap<string, string> strMap;
 };
 
 #endif // MAINWINDOW_H

@@ -4,7 +4,7 @@
 #include <QTableWidgetItem>
 #include <QStandardItemModel>
 
-//using namespace std;
+using namespace std;
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -40,27 +40,14 @@ void MainWindow::on_btnSelectDB_clicked()
         list.append(info.baseName());
     }
 
-
-    strMap.insert("Monday", "1");
-
-    strMap.insert("Tuesday", "2");
-    strMap.insert("Wednesday", "3");
-    strMap.insert("Thursday", "4");
-    strMap.insert("Friday", "5");
-    strMap.insert("Saturday", "6");
-
-    QStandardItemModel *tvModel = new QStandardItemModel(2,3,this); //2 Rows and 3 Columns
+    QStandardItemModel *tvModel = new QStandardItemModel(0,2,this);
     tvModel->setHorizontalHeaderItem(0, new QStandardItem(QString("Column1 Header")));
     tvModel->setHorizontalHeaderItem(1, new QStandardItem(QString("Column2 Header")));
-    tvModel->setHorizontalHeaderItem(2, new QStandardItem(QString("Column3 Header")));
 
-    QMap<string, string>::ConstIterator i;
+    QStandardItem *item = new QStandardItem(QString("bluh"));
 
-    for( i = strMap.constBegin(); i != strMap.constEnd(); ++i )
-    {
-        tvModel->setItem(i, i,  i.key());
-        tvModel->setItem(i, i+1, i.value());
-    }
+    tvModel->appendRow(item);
+
     ui->tableView->setModel(tvModel);
     model->setStringList(list);
     ui->listView->setModel(model);
