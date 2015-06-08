@@ -5,6 +5,7 @@
 #include <QStandardItemModel>
 
 //using namespace std;
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -40,29 +41,27 @@ void MainWindow::on_btnSelectDB_clicked()
     }
 
 
-    strMap["Monday"]    = "1";
-    strMap["Tuesday"]   = "2";
-    strMap["Wednesday"] = "3";
-    strMap["Thursday"]  = "4";
-    strMap["Friday"]    = "5";
-    strMap["Saturday"]  = "6";
+    strMap.insert("Monday", "1");
 
-
+    strMap.insert("Tuesday", "2");
+    strMap.insert("Wednesday", "3");
+    strMap.insert("Thursday", "4");
+    strMap.insert("Friday", "5");
+    strMap.insert("Saturday", "6");
 
     QStandardItemModel *tvModel = new QStandardItemModel(2,3,this); //2 Rows and 3 Columns
     tvModel->setHorizontalHeaderItem(0, new QStandardItem(QString("Column1 Header")));
     tvModel->setHorizontalHeaderItem(1, new QStandardItem(QString("Column2 Header")));
     tvModel->setHorizontalHeaderItem(2, new QStandardItem(QString("Column3 Header")));
 
+    QMap<string, string>::ConstIterator i;
+
+    for( i = strMap.constBegin(); i != strMap.constEnd(); ++i )
+    {
+        tvModel->setItem(i, i,  i.key());
+        tvModel->setItem(i, i+1, i.value());
+    }
     ui->tableView->setModel(tvModel);
-
-//    QMap<string, string>::ConstIterator ii;
-//    for( ii = strMap.constBegin(); ii != strMap.constEnd(); ++ii )
-//    {
-//        tableWidget->setItem(ii, ii,  new QTableWidgetItem("ii.key()"));
-//        //tableWidget->setItem(ii, ii+1, new QTableWidgetItem("ii.value()"));
-//    }
-
     model->setStringList(list);
     ui->listView->setModel(model);
 }
