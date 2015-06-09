@@ -27,6 +27,33 @@ void MainWindow::on_btnSelectDB_clicked()
     tvModel->setHorizontalHeaderItem(0, new QStandardItem(QString("Site A")));
     tvModel->setHorizontalHeaderItem(1, new QStandardItem(QString("Site B")));
 
+    QString info = readFile(tvModel);
+
+    if(list.isEmpty())
+    {
+        list << info;
+    }
+    else
+    {
+        list.append(info);
+    }
+
+    ui->tableView->setModel(tvModel);
+    model->setStringList(list);
+    ui->listView->setModel(model);
+}
+
+void MainWindow::on_btnRemove_clicked()
+{
+    QModelIndexList selected = ui->listView->selectionModel()->selectedIndexes();
+       if (!selected.isEmpty())
+       {
+          list.removeAt(selected.first().row());
+          ((QStringListModel*) ui->listView->model())->setStringList(list);
+       }
+}
+
+QString MainWindow::readFile(QStandardItemModel *tvModel){
     QString filename = QFileDialog::getOpenFileName(
                 this,
                 tr("Add database"),
@@ -55,34 +82,11 @@ void MainWindow::on_btnSelectDB_clicked()
         for(int i = 0; i < fields.size(); i++){
             QStandardItem *item = new QStandardItem(fields.at(i));
             tvModel->setItem(k, i, item);
-            //tvModel->setItem(1+k, i, item);
-
         }
         k++;
     }
 
     file.close();
 
-    if(list.isEmpty())
-    {
-        list << info.baseName();
-    }
-    else
-    {
-        list.append(info.baseName());
-    }
-
-    ui->tableView->setModel(tvModel);
-    model->setStringList(list);
-    ui->listView->setModel(model);
-}
-
-void MainWindow::on_btnRemove_clicked()
-{
-    QModelIndexList selected = ui->listView->selectionModel()->selectedIndexes();
-       if (!selected.isEmpty())
-       {
-          list.removeAt(selected.first().row());
-          ((QStringListModel*) ui->listView->model())->setStringList(list);
-       }
+    return info.baseName();
 }

@@ -8,6 +8,7 @@
 #include <QFileInfo>
 #include<QModelIndexList>
 #include<QMap>
+#include <QStandardItemModel>
 
 using namespace std;
 
@@ -27,6 +28,8 @@ private slots:
     void on_btnSelectDB_clicked();
 
     void on_btnRemove_clicked();
+
+    QString readFile(QStandardItemModel *tvModel);
 
 private:
     Ui::MainWindow *ui;
