@@ -26,15 +26,16 @@ public:
 
 private slots:
     void on_btnSelectDB_clicked();
-
     void on_btnRemove_clicked();
-
-    QString readFile(QStandardItemModel *tvModel);
+    void readFile(QStandardItemModel *tvModel, QString fileName);
+    QString getFileName();
+    void setListViewElements(QString fileName);
 
 private:
     Ui::MainWindow *ui;
     QStringListModel *model;
     QStringList list;
+    QVector<QString> vector;
 };
 
 #endif // MAINWINDOW_H

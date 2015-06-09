@@ -12,6 +12,7 @@ public:
     QString getSiteA();
     QString getSiteB();
 
+
 private:
     QString siteA;
     QString siteB;
