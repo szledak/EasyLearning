@@ -150,3 +150,8 @@ QString MainWindow::getFileName(){
     QString name = info.baseName();
     return name;
 }
+
+void MainWindow::on_btnStart_clicked()
+{
+    
+}
