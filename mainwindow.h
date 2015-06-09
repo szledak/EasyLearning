@@ -32,6 +32,8 @@ private slots:
     void setListViewElements(QString fileName);
     void showDataInTableView(QStandardItemModel *tvModel,  QVector<QString> vRead);
 
+    void on_btnStart_clicked();
+
 private:
     Ui::MainWindow *ui;
     QStringListModel *model;

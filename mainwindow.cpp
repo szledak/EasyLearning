@@ -7,6 +7,7 @@
 #include <QTextStream>
 #include <QStringListModel>
 #include <QDebug>
+#include "testdialog.h"
 
 using namespace std;
 
@@ -149,4 +150,13 @@ QString MainWindow::getFileName(){
     QFileInfo info(fileName);
     QString name = info.baseName();
     return name;
+}
+
+void MainWindow::on_btnStart_clicked()
+{
+    TestDialog testDialog;
+    testDialog.setModal(true);
+    testDialog.exec();
+
+
 }
