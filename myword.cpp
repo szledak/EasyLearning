@@ -12,18 +12,18 @@ MyWord::~MyWord()
 
 }
 
-MyWord::getSiteA(){
+QString MyWord::getSiteA(){
     return siteA;
 }
 
-MyWord::getSiteB(){
+QString MyWord::getSiteB(){
     return siteB;
 }
 
-MyWord::setSiteA(QString a){
+void MyWord::setSiteA(QString a){
     siteA = a;
 }
 
-MyWord::setSiteB(QString b){
+void MyWord::setSiteB(QString b){
     siteB = b;
 }

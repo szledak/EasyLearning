@@ -1,11 +1,11 @@
 #ifndef MYWORD_H
 #define MYWORD_H
-
+#include <QString>
 
 class MyWord
 {
 public:
-    MyWord();
+    MyWord(QString, QString);
     ~MyWord();
     void setSiteA(QString);
     void setSiteB(QString);
