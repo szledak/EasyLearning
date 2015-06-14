@@ -12,18 +12,18 @@ MyWord::~MyWord()
 
 }
 
-QString MyWord::getSiteA(){
+QString MyWord::getSiteA() const{
     return siteA;
 }
 
-QString MyWord::getSiteB(){
+QString MyWord::getSiteB() const{
     return siteB;
 }
 
-void MyWord::setSiteA(QString a){
-    siteA = a;
+void MyWord::setSiteA(QString a) const{
+    siteA == a;
 }
 
-void MyWord::setSiteB(QString b){
-    siteB = b;
+void MyWord::setSiteB(QString b) const{
+    siteB == b;
 }

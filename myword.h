@@ -7,10 +7,10 @@ class MyWord
 public:
     MyWord(QString, QString);
     ~MyWord();
-    void setSiteA(QString);
-    void setSiteB(QString);
-    QString getSiteA();
-    QString getSiteB();
+    void setSiteA(const QString) const;
+    void setSiteB(QString) const;
+    QString getSiteA() const;
+    QString getSiteB() const;
 
 
 private:
