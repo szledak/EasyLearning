@@ -18,6 +18,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->setupUi(this);
     vGlobal.resize(0);
+   // vMyWords.resize(0);
+
 }
 
 MainWindow::~MainWindow()
@@ -51,6 +53,7 @@ void MainWindow::on_btnSelectDB_clicked()
 
 //    for(int i = 0; i < vGlobal.size(); i++)
 //        qDebug() << i << " " << vGlobal.at(i);
+
 }
 
 void MainWindow::on_btnRemove_clicked()
@@ -70,7 +73,6 @@ void MainWindow::on_btnRemove_clicked()
                 vGlobal.removeAt(i);
                 showDataInTableView(tvModel, vGlobal);
                 ui->tableView->setModel(tvModel);
-
               }
           }
 
@@ -111,6 +113,8 @@ void MainWindow::showDataInTableView(QStandardItemModel *tvModel,  QVector<QStri
            j++;
          }
      }
+
+
 }
 
 QVector<QString> MainWindow::readFile(QString fileName){
@@ -154,9 +158,20 @@ QString MainWindow::getFileName(){
 
 void MainWindow::on_btnStart_clicked()
 {
+//    int k = 0;
+
+//    for(int i = 0; i < vGlobal.length()/2; i++){
+//        vMyWords.at(i).setSiteA(vGlobal.at(i));
+//        k= i+1;
+//        vMyWords.at(i).setSiteB(vGlobal.at(k));
+//    }
+
+
+//        for(int i = 0; i < vMyWords.size(); i++)
+//            qDebug()  << "A: " << vMyWords.at(i).getSiteA()<< "B: " << vMyWords.at(i).getSiteB();
+
     TestDialog testDialog(vGlobal);
 
     testDialog.setModal(true);
-    //testDialog.getDialogVector();
     testDialog.exec();
 }

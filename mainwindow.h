@@ -9,7 +9,7 @@
 #include<QModelIndexList>
 #include<QMap>
 #include <QStandardItemModel>
-
+#include "myword.h"
 using namespace std;
 
 namespace Ui {
@@ -39,6 +39,7 @@ private:
     QStringListModel *model;
     QStringList list;
     QVector<QString> vGlobal;
+    QVector<MyWord> vMyWords;
     QStandardItemModel *tvModel;
 };
 
