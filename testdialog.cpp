@@ -71,7 +71,15 @@ void TestDialog::on_btnNext_clicked()
 
 void TestDialog::showQuestion(){
     if(siteA == true)
+    {
         ui->lblQuestion->setText(dGlobal.at(count));
+        ui->lblSite->setText("Site A");
+    }
+
     else
+    {
         ui->lblQuestion->setText(dGlobal.at(count+1));
+        ui->lblSite->setText("Site B");
+    }
+
 }
