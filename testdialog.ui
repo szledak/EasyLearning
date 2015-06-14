@@ -57,6 +57,15 @@
         <height>25</height>
        </size>
       </property>
+      <property name="font">
+       <font>
+        <weight>50</weight>
+        <italic>false</italic>
+        <bold>false</bold>
+        <strikeout>false</strikeout>
+        <kerning>true</kerning>
+       </font>
+      </property>
       <property name="text">
        <string>TextLabel</string>
       </property>
@@ -66,7 +75,17 @@
      </widget>
     </item>
     <item>
-     <widget class="QLineEdit" name="edtQuestion"/>
+     <widget class="QLabel" name="lblQuestion">
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>25</height>
+       </size>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
     </item>
     <item>
      <widget class="QLineEdit" name="edtAnswer"/>
@@ -116,7 +135,17 @@
      </widget>
     </item>
     <item>
-     <widget class="QLineEdit" name="lineEdit"/>
+     <widget class="QLabel" name="lblCorrectWord">
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>25</height>
+       </size>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>
