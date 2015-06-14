@@ -19,7 +19,7 @@ TestDialog::TestDialog(QVector<QString> vGlobal, QWidget *parent) :
 
     ui->lblCount->setText("1/" + QString::number(testSize));
 
-    ui->lblSite->setText(dGlobal.at(count));
+    ui->lblQuestion->setText(dGlobal.at(count));
 }
 
 TestDialog::~TestDialog()
@@ -51,7 +51,7 @@ void TestDialog::on_btnNext_clicked()
             testCount++;
             count = count+2;
             ui->lblCount->setText(QString::number(testCount) + "/" + QString::number(testSize));
-            ui->lblSite->setText(dGlobal.at(count));
+            ui->lblQuestion->setText(dGlobal.at(count));
         }
         else
         {
