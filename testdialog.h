@@ -12,11 +12,13 @@ class TestDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit TestDialog( QVector<QString> vGlobal, QWidget *parent = 0);
+    explicit TestDialog(QVector<QString> vGlobal, bool flag = true, QWidget *parent = 0);
     ~TestDialog();
 
 private slots:
     void on_btnNext_clicked();
+    void checkAnswer(QString str);
+    void showQuestion();
 
 private:
     Ui::TestDialog *ui;
@@ -26,6 +28,8 @@ private:
     int count;
     int testCount;
     int testSize;
+    bool siteA;
+
 };
 
 #endif // TESTDIALOG_H

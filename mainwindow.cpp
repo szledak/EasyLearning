@@ -15,11 +15,8 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-
     ui->setupUi(this);
     vGlobal.resize(0);
-   // vMyWords.resize(0);
-
 }
 
 MainWindow::~MainWindow()
@@ -120,7 +117,6 @@ void MainWindow::showDataInTableView(QStandardItemModel *tvModel,  QVector<QStri
 QVector<QString> MainWindow::readFile(QString fileName){
 
     QVector<QString> vector;
-  //  vector.resize(0);
 
     QFile file("C:/Users/Sonia/Desktop/" + fileName + ".txt");
     if(!file.open(QIODevice::ReadOnly)) {
@@ -158,8 +154,8 @@ QString MainWindow::getFileName(){
 
 void MainWindow::on_btnStart_clicked()
 {
-    TestDialog testDialog(vGlobal);
-
+    bool flag = ui->rdbSiteA->isChecked();
+    TestDialog testDialog(vGlobal, flag);
     testDialog.setModal(true);
     testDialog.exec();
 }
