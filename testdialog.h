@@ -14,7 +14,6 @@ class TestDialog : public QDialog
 public:
     explicit TestDialog( QVector<QString> vGlobal, QWidget *parent = 0);
     ~TestDialog();
-   // void getDialogVector(QVector<QString> vGlobal);
 
 private slots:
     void on_btnNext_clicked();
@@ -22,6 +21,11 @@ private slots:
 private:
     Ui::TestDialog *ui;
     QVector<QString> dGlobal;
+    int correct;
+    int wrong;
+    int count;
+    int testCount;
+    int testSize;
 };
 
 #endif // TESTDIALOG_H

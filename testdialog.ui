@@ -23,7 +23,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Next</string>
+    <string>Check</string>
    </property>
   </widget>
   <widget class="QPushButton" name="btnEnd">
@@ -114,14 +114,14 @@
       <item>
        <widget class="QLabel" name="lblCorrectCount">
         <property name="text">
-         <string>Correct: </string>
+         <string>Correct: 0</string>
         </property>
        </widget>
       </item>
       <item>
        <widget class="QLabel" name="lblWrongCount">
         <property name="text">
-         <string>Wrong:</string>
+         <string>Wrong: 0</string>
         </property>
        </widget>
       </item>
