@@ -158,18 +158,6 @@ QString MainWindow::getFileName(){
 
 void MainWindow::on_btnStart_clicked()
 {
-//    int k = 0;
-
-//    for(int i = 0; i < vGlobal.length()/2; i++){
-//        vMyWords.at(i).setSiteA(vGlobal.at(i));
-//        k= i+1;
-//        vMyWords.at(i).setSiteB(vGlobal.at(k));
-//    }
-
-
-//        for(int i = 0; i < vMyWords.size(); i++)
-//            qDebug()  << "A: " << vMyWords.at(i).getSiteA()<< "B: " << vMyWords.at(i).getSiteB();
-
     TestDialog testDialog(vGlobal);
 
     testDialog.setModal(true);
