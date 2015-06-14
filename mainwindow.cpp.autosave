@@ -157,6 +157,5 @@ void MainWindow::on_btnStart_clicked()
     TestDialog testDialog(vGlobal);
 
     testDialog.setModal(true);
-    //testDialog.getDialogVector();
     testDialog.exec();
 }

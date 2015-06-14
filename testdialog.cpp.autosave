@@ -14,10 +14,6 @@ TestDialog::~TestDialog()
 {
     delete ui;
 }
-//void TestDialog::getDialogVector(QVector<QString> vGlobal){
-//    //dGlobal = vGlobal;
-
-//}
 
 void TestDialog::on_btnNext_clicked()
 {
