@@ -31,7 +31,7 @@ private slots:
     QString getFileName();
     void setListViewElements(QString fileName);
     void showDataInTableView(QStandardItemModel *tvModel,  QVector<QString> vRead);
-
+    void setAllFileNames();
     void on_btnStart_clicked();
 
 private:

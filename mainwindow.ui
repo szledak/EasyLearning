@@ -156,7 +156,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QComboBox" name="comboBox"/>
+      <widget class="QComboBox" name="cmbxFileList"/>
      </item>
      <item>
       <widget class="QPushButton" name="pushButton_2">

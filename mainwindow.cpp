@@ -8,6 +8,7 @@
 #include <QStringListModel>
 #include <QDebug>
 #include "testdialog.h"
+#include <QCoreApplication>
 
 using namespace std;
 
@@ -17,6 +18,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     vGlobal.resize(0);
+    setAllFileNames();
 }
 
 MainWindow::~MainWindow()
@@ -44,13 +46,23 @@ void MainWindow::on_btnSelectDB_clicked()
 
     setListViewElements(fileName);
 
+
     ui->tableView->setModel(tvModel);
     model->setStringList(list);
     ui->listView->setModel(model);
+}
 
-    //    for(int i = 0; i < vGlobal.size(); i++)
-    //        qDebug() << i << " " << vGlobal.at(i);
+void MainWindow::setAllFileNames()
+{
+    QDir dir("C:/Users/Sonia/Desktop/el_database/");
+    dir.setFilter(QDir::Files | QDir::NoDotAndDotDot | QDir::NoSymLinks);
+    //       dir.setSorting(QDir::Size | QDir::Reversed);
 
+    QFileInfoList list = dir.entryInfoList();
+    for (int i = 0; i < list.size(); ++i) {
+        QFileInfo fileInfo = list.at(i);
+        ui->cmbxFileList->addItem(fileInfo.fileName());
+    }
 }
 
 void MainWindow::on_btnRemove_clicked()
@@ -80,8 +92,8 @@ void MainWindow::on_btnRemove_clicked()
         showDataInTableView(tModel, vGlobal);
         ui->tableView->setModel(tModel);
 
-//        for(int i = 0; i < vGlobal.size(); i++)
-//            qDebug() << i << " " << vGlobal.at(i);
+        //        for(int i = 0; i < vGlobal.size(); i++)
+        //            qDebug() << i << " " << vGlobal.at(i);
 
 
         list.removeAt(selected.first().row());
@@ -107,11 +119,11 @@ void MainWindow::showDataInTableView(QStandardItemModel *tvModel,  QVector<QStri
         for(int k = 0; k < 2; k++){
             QStandardItem *item = new QStandardItem(vGlobal.at(j));
 
-//            if(j % 2 == 0)
-//            {
-//                item->setCheckable(true);
-//                item->setCheckState(Qt::Checked);
-//            }
+            //            if(j % 2 == 0)
+            //            {
+            //                item->setCheckable(true);
+            //                item->setCheckState(Qt::Checked);
+            //            }
 
             item->setEditable(false);
             item->setSelectable(false);
@@ -169,8 +181,8 @@ void MainWindow::on_btnStart_clicked()
     //TO DO: checked items
 
 
-//    for(int i = 0; i < vTest.length(); i++)
-//        qDebug() << vTest.at(i);
+    //    for(int i = 0; i < vTest.length(); i++)
+    //        qDebug() << vTest.at(i);
 
     bool flag = ui->rdbSiteA->isChecked();
     TestDialog testDialog(vGlobal, flag);
