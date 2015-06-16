@@ -48,49 +48,49 @@ void MainWindow::on_btnSelectDB_clicked()
     model->setStringList(list);
     ui->listView->setModel(model);
 
-//    for(int i = 0; i < vGlobal.size(); i++)
-//        qDebug() << i << " " << vGlobal.at(i);
+    //    for(int i = 0; i < vGlobal.size(); i++)
+    //        qDebug() << i << " " << vGlobal.at(i);
 
 }
 
 void MainWindow::on_btnRemove_clicked()
 {
     QModelIndexList selected = ui->listView->selectionModel()->selectedIndexes();
-       if (!selected.isEmpty())
-       {
-          QString str = list.at(selected.first().row());
+    if (!selected.isEmpty())
+    {
+        QString str = list.at(selected.first().row());
 
-          QVector<QString> vRemove = readFile(str);
+        QVector<QString> vRemove = readFile(str);
 
-          for(int i = 0; i < vGlobal.length(); i++)
-              for(int k = 0; k < vRemove.length(); k++)
-          {
-              if(vGlobal.at(i) == vRemove.at(k))
-              {
-                vGlobal.removeAt(i);
-                showDataInTableView(tvModel, vGlobal);
-                ui->tableView->setModel(tvModel);
-              }
-          }
+        for(int i = 0; i < vGlobal.length(); i++)
+            for(int k = 0; k < vRemove.length(); k++)
+            {
+                if(vGlobal.at(i) == vRemove.at(k))
+                {
+                    vGlobal.removeAt(i);
+                    showDataInTableView(tvModel, vGlobal);
+                    ui->tableView->setModel(tvModel);
+                }
+            }
 
-           QStandardItemModel *tModel = new QStandardItemModel(0,0,this);
-           tModel->setHorizontalHeaderItem(0, new QStandardItem(QString("Site A")));
-           tModel->setHorizontalHeaderItem(1, new QStandardItem(QString("Site B")));
+        QStandardItemModel *tModel = new QStandardItemModel(0,0,this);
+        tModel->setHorizontalHeaderItem(0, new QStandardItem(QString("Site A")));
+        tModel->setHorizontalHeaderItem(1, new QStandardItem(QString("Site B")));
 
-           showDataInTableView(tModel, vGlobal);
-           ui->tableView->setModel(tModel);
+        showDataInTableView(tModel, vGlobal);
+        ui->tableView->setModel(tModel);
 
-              for(int i = 0; i < vGlobal.size(); i++)
-                  qDebug() << i << " " << vGlobal.at(i);
-
-
-          list.removeAt(selected.first().row());
-          ((QStringListModel*) ui->listView->model())->setStringList(list);
+//        for(int i = 0; i < vGlobal.size(); i++)
+//            qDebug() << i << " " << vGlobal.at(i);
 
 
-          qDebug() << str;
-          vRemove.clear();
-       }
+        list.removeAt(selected.first().row());
+        ((QStringListModel*) ui->listView->model())->setStringList(list);
+
+
+        qDebug() << str;
+        vRemove.clear();
+    }
 }
 
 void MainWindow::setListViewElements(QString fileName){
@@ -101,17 +101,25 @@ void MainWindow::setListViewElements(QString fileName){
 }
 
 void MainWindow::showDataInTableView(QStandardItemModel *tvModel,  QVector<QString> vGlobal){
-     int j = 0;
-     for(int i = 0; i < vGlobal.length()/2; i++)
-     {
-         for(int k = 0; k < 2; k++){
-           QStandardItem *item = new QStandardItem(vGlobal.at(j));
-           tvModel->setItem(i, k, item);
-           j++;
-         }
-     }
+    int j = 0;
+    for(int i = 0; i < vGlobal.length()/2; i++)
+    {
+        for(int k = 0; k < 2; k++){
+            QStandardItem *item = new QStandardItem(vGlobal.at(j));
 
+//            if(j % 2 == 0)
+//            {
+//                item->setCheckable(true);
+//                item->setCheckState(Qt::Checked);
+//            }
 
+            item->setEditable(false);
+            item->setSelectable(false);
+            tvModel->setItem(i, k, item);
+
+            j++;
+        }
+    }
 }
 
 QVector<QString> MainWindow::readFile(QString fileName){
@@ -130,7 +138,7 @@ QVector<QString> MainWindow::readFile(QString fileName){
         QString line = in.readLine();
         fields = line.split(" ");
 
-        for(int i = 0; i < fields.size(); i++){  
+        for(int i = 0; i < fields.size(); i++){
             vector.append(fields.at(i));
         }
     }
@@ -154,6 +162,16 @@ QString MainWindow::getFileName(){
 
 void MainWindow::on_btnStart_clicked()
 {
+    QVector<QString> vTest;
+
+
+
+    //TO DO: checked items
+
+
+//    for(int i = 0; i < vTest.length(); i++)
+//        qDebug() << vTest.at(i);
+
     bool flag = ui->rdbSiteA->isChecked();
     TestDialog testDialog(vGlobal, flag);
     testDialog.setModal(true);
