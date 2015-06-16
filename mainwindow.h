@@ -29,7 +29,7 @@ private slots:
     void on_btnRemove_clicked();
     QVector<QString> readFile(QString fileName);
     QString getFileName();
-    void setListViewElements(QString fileName);
+    void setListViewElements(QString filename);
     void showDataInTableView(QStandardItemModel *tvModel,  QVector<QString> vRead);
     void setComboBoxItems(QFileInfoList);
     void on_btnStart_clicked();

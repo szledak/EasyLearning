@@ -19,7 +19,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     vGlobal.resize(0);
 
-
     setComboBoxItems(getAllFileNames());
 }
 
@@ -47,7 +46,6 @@ void MainWindow::on_btnSelectDB_clicked()
     showDataInTableView(tvModel, vGlobal);
 
     setListViewElements(fileName);
-
 
     ui->tableView->setModel(tvModel);
     model->setStringList(list);
@@ -78,6 +76,7 @@ void MainWindow::on_btnRemove_clicked()
     {
         QString str = list.at(selected.first().row());
 
+
         QVector<QString> vRemove = readFile(str);
 
         for(int i = 0; i < vGlobal.length(); i++)
@@ -98,24 +97,26 @@ void MainWindow::on_btnRemove_clicked()
         showDataInTableView(tModel, vGlobal);
         ui->tableView->setModel(tModel);
 
-        //        for(int i = 0; i < vGlobal.size(); i++)
-        //            qDebug() << i << " " << vGlobal.at(i);
-
-
         list.removeAt(selected.first().row());
         ((QStringListModel*) ui->listView->model())->setStringList(list);
 
-
         qDebug() << str;
         vRemove.clear();
+
+        if(list.isEmpty())
+            ui->btnRemove->setEnabled(false);
+        ui->btnStart->setEnabled(false);
     }
 }
 
-void MainWindow::setListViewElements(QString fileName){
-    if(list.isEmpty())
-        list << fileName;
-    else
-        list.append(fileName);
+void MainWindow::setListViewElements(QString filename){
+
+    if(!filename.isEmpty())
+    {
+        list.append(filename);
+        ui->btnRemove->setEnabled(true);
+        ui->btnStart->setEnabled(true);
+    }
 }
 
 void MainWindow::showDataInTableView(QStandardItemModel *tvModel,  QVector<QString> vGlobal){
