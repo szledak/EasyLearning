@@ -206,22 +206,20 @@ void MainWindow::on_btnCreate_clicked()
       QMessageBox::warning(NULL, "Test", "Unable to open: " + newName , "OK");
     }
     else
-        QMessageBox::information(NULL, "Test", "Create database file: " + newName + ".txt", "OK");
+        QMessageBox::information(NULL, "Create new file", "Create new database file: " + newName + ".txt", "OK");
 
 
     ui->cmbxFileList->clear();
     setComboBoxItems(getAllFileNames());
 
     testFile.close();
-
-
 }
 
 void MainWindow::on_btnDelete_clicked()
 {
     QString fileName =  ui->cmbxFileList->currentText();
     QMessageBox::StandardButton reply;
-    reply = QMessageBox::question(NULL, "Delete database file", "Remove " + fileName + "?", QMessageBox::Yes|QMessageBox::No);
+    reply = QMessageBox::question(NULL, "Delete file", "Remove " + fileName + "file?", QMessageBox::Yes|QMessageBox::No);
 
      if (reply == QMessageBox::Yes)
      {
