@@ -199,6 +199,7 @@ void MainWindow::on_btnStart_clicked()
 void MainWindow::on_btnCreate_clicked()
 {
     QString newName = ui->edtName->text();
+
     QFile testFile("C:/Users/Sonia/Desktop/el_database/" + newName + ".txt");
     if( !testFile.open(QIODevice::WriteOnly) )
     {
@@ -210,5 +211,18 @@ void MainWindow::on_btnCreate_clicked()
 
     testFile.close();
 
+
+}
+
+void MainWindow::on_btnDelete_clicked()
+{
+    QString fileName =  ui->cmbxFileList->currentText();
+
+    qDebug() << "Plik: " << fileName;
+
+    QFile::remove("C:/Users/Sonia/Desktop/el_database/" + fileName);
+
+    ui->cmbxFileList->clear();
+    setComboBoxItems(getAllFileNames());
 
 }

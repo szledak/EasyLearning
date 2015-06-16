@@ -36,6 +36,8 @@ private slots:
     QFileInfoList getAllFileNames();
     void on_btnCreate_clicked();
 
+    void on_btnDelete_clicked();
+
 private:
     Ui::MainWindow *ui;
     QStringListModel *model;
