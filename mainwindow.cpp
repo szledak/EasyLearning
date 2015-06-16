@@ -198,36 +198,39 @@ void MainWindow::on_btnStart_clicked()
 
 void MainWindow::on_btnCreate_clicked()
 {
-    QString newName = ui->edtName->text();
+    QString filename = ui->edtName->text();
 
-    QFile testFile("C:/Users/Sonia/Desktop/el_database/" + newName + ".txt");
-    if( !testFile.open(QIODevice::WriteOnly) )
-    {
-      QMessageBox::warning(NULL, "Test", "Unable to open: " + newName , "OK");
-    }
+    if(filename.isEmpty())
+        QMessageBox::warning(NULL, "Empty filename", "You did not enter a filename!", "OK");
     else
-        QMessageBox::information(NULL, "Create new file", "Create new database file: " + newName + ".txt", "OK");
+    {
+        QFile testFile("C:/Users/Sonia/Desktop/el_database/" + filename + ".txt");
+        if( !testFile.open(QIODevice::WriteOnly) )
+        {
+            QMessageBox::warning(NULL, "Test", "Unable to open: " + filename , "OK");
+        }
+        else
+            QMessageBox::information(NULL, "Create new file", "Create new database file: " + filename + ".txt", "OK");
 
 
-    ui->cmbxFileList->clear();
-    setComboBoxItems(getAllFileNames());
+        ui->cmbxFileList->clear();
+        setComboBoxItems(getAllFileNames());
 
-    testFile.close();
+        testFile.close();
+    }
 }
 
 void MainWindow::on_btnDelete_clicked()
 {
-    QString fileName =  ui->cmbxFileList->currentText();
+    QString filename =  ui->cmbxFileList->currentText();
     QMessageBox::StandardButton reply;
-    reply = QMessageBox::question(NULL, "Delete file", "Remove " + fileName + "file?", QMessageBox::Yes|QMessageBox::No);
+    reply = QMessageBox::question(NULL, "Delete file", "Remove " + filename + " file?", QMessageBox::Yes|QMessageBox::No);
 
-     if (reply == QMessageBox::Yes)
-     {
-         qDebug() << "Plik: " << fileName;
+    if (reply == QMessageBox::Yes)
+    {
+        QFile::remove("C:/Users/Sonia/Desktop/el_database/" + filename);
 
-         QFile::remove("C:/Users/Sonia/Desktop/el_database/" + fileName);
-
-         ui->cmbxFileList->clear();
-         setComboBoxItems(getAllFileNames());
-     }
+        ui->cmbxFileList->clear();
+        setComboBoxItems(getAllFileNames());
+    }
 }
