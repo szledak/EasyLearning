@@ -209,6 +209,9 @@ void MainWindow::on_btnCreate_clicked()
         QMessageBox::information(NULL, "Test", "Create database file: " + newName + ".txt", "OK");
 
 
+    ui->cmbxFileList->clear();
+    setComboBoxItems(getAllFileNames());
+
     testFile.close();
 
 
@@ -217,12 +220,16 @@ void MainWindow::on_btnCreate_clicked()
 void MainWindow::on_btnDelete_clicked()
 {
     QString fileName =  ui->cmbxFileList->currentText();
+    QMessageBox::StandardButton reply;
+    reply = QMessageBox::question(NULL, "Delete database file", "Remove " + fileName + "?", QMessageBox::Yes|QMessageBox::No);
 
-    qDebug() << "Plik: " << fileName;
+     if (reply == QMessageBox::Yes)
+     {
+         qDebug() << "Plik: " << fileName;
 
-    QFile::remove("C:/Users/Sonia/Desktop/el_database/" + fileName);
+         QFile::remove("C:/Users/Sonia/Desktop/el_database/" + fileName);
 
-    ui->cmbxFileList->clear();
-    setComboBoxItems(getAllFileNames());
-
+         ui->cmbxFileList->clear();
+         setComboBoxItems(getAllFileNames());
+     }
 }
