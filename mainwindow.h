@@ -31,8 +31,10 @@ private slots:
     QString getFileName();
     void setListViewElements(QString fileName);
     void showDataInTableView(QStandardItemModel *tvModel,  QVector<QString> vRead);
-    void setAllFileNames();
+    void setComboBoxItems(QFileInfoList);
     void on_btnStart_clicked();
+    QFileInfoList getAllFileNames();
+    void on_btnCreate_clicked();
 
 private:
     Ui::MainWindow *ui;

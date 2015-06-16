@@ -18,7 +18,9 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     vGlobal.resize(0);
-    setAllFileNames();
+
+
+    setComboBoxItems(getAllFileNames());
 }
 
 MainWindow::~MainWindow()
@@ -52,17 +54,21 @@ void MainWindow::on_btnSelectDB_clicked()
     ui->listView->setModel(model);
 }
 
-void MainWindow::setAllFileNames()
+void MainWindow::setComboBoxItems(QFileInfoList list)
 {
-    QDir dir("C:/Users/Sonia/Desktop/el_database/");
-    dir.setFilter(QDir::Files | QDir::NoDotAndDotDot | QDir::NoSymLinks);
-    //       dir.setSorting(QDir::Size | QDir::Reversed);
-
-    QFileInfoList list = dir.entryInfoList();
     for (int i = 0; i < list.size(); ++i) {
         QFileInfo fileInfo = list.at(i);
         ui->cmbxFileList->addItem(fileInfo.fileName());
     }
+}
+
+QFileInfoList MainWindow::getAllFileNames()
+{
+    QDir dir("C:/Users/Sonia/Desktop/el_database/");
+    dir.setFilter(QDir::Files | QDir::NoDotAndDotDot | QDir::NoSymLinks);
+
+    QFileInfoList list = dir.entryInfoList();
+    return list;
 }
 
 void MainWindow::on_btnRemove_clicked()
@@ -188,4 +194,21 @@ void MainWindow::on_btnStart_clicked()
     TestDialog testDialog(vGlobal, flag);
     testDialog.setModal(true);
     testDialog.exec();
+}
+
+void MainWindow::on_btnCreate_clicked()
+{
+    QString newName = ui->edtName->text();
+    QFile testFile("C:/Users/Sonia/Desktop/el_database/" + newName + ".txt");
+    if( !testFile.open(QIODevice::WriteOnly) )
+    {
+      QMessageBox::warning(NULL, "Test", "Unable to open: " + newName , "OK");
+    }
+    else
+        QMessageBox::information(NULL, "Test", "Create database file: " + newName + ".txt", "OK");
+
+
+    testFile.close();
+
+
 }

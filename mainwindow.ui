@@ -131,7 +131,7 @@
       <x>610</x>
       <y>10</y>
       <width>151</width>
-      <height>151</height>
+      <height>291</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -144,29 +144,45 @@
         </size>
        </property>
        <property name="text">
-        <string>Database creator</string>
+        <string>New database name:</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QLineEdit" name="edtName"/>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btnCreate">
        <property name="text">
-        <string>Create database</string>
+        <string>Create database file</string>
        </property>
       </widget>
+     </item>
+     <item>
+      <spacer name="verticalSpacer">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>20</width>
+         <height>40</height>
+        </size>
+       </property>
+      </spacer>
      </item>
      <item>
       <widget class="QComboBox" name="cmbxFileList"/>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_2">
+      <widget class="QPushButton" name="btnEdit">
        <property name="text">
         <string>Edit</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_3">
+      <widget class="QPushButton" name="btnDelete">
        <property name="text">
         <string>Delete</string>
        </property>
