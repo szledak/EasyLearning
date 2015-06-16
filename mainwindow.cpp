@@ -126,7 +126,7 @@ QVector<QString> MainWindow::readFile(QString fileName){
 
     QVector<QString> vector;
 
-    QFile file("C:/Users/Sonia/Desktop/" + fileName + ".txt");
+    QFile file("C:/Users/Sonia/Desktop/el_database/" + fileName + ".txt");
     if(!file.open(QIODevice::ReadOnly)) {
         QMessageBox::information(0, "error", file.errorString());
     }
@@ -151,7 +151,7 @@ QString MainWindow::getFileName(){
     QString fileName = QFileDialog::getOpenFileName(
                 this,
                 tr("Add database"),
-                "C://Users//Sonia//Desktop",
+                "C://Users//Sonia//Desktop//el_database//",
                 "*.txt"
                 );
 
