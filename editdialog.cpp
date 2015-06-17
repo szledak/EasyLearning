@@ -2,6 +2,8 @@
 #include "ui_editdialog.h"
 #include <QDebug>
 #include <QMessageBox>
+#include <QFile>
+#include <QTextStream>
 
 EditDialog::EditDialog(QString fName, QWidget *parent) :
     QDialog(parent),
@@ -16,9 +18,7 @@ EditDialog::EditDialog(QString fName, QWidget *parent) :
     ui->tableWidget->setColumnCount(2);
     ui->tableWidget->setHorizontalHeaderLabels(list);
 
-    //    int place = ui->tableWidget->rowCount() - 1;
-
-
+    addDataToQTableWidget(readFile(filename));
 }
 
 EditDialog::~EditDialog()
@@ -35,9 +35,6 @@ void EditDialog::on_btnAdd_clicked()
         QMessageBox::warning(NULL, "Empty filename", "You did not enter a word!", "OK");
     else
     {
-        vector.append(siteA);
-        vector.append(siteB);
-
         ui->edtSiteA->clear();
         ui->edtSiteB->clear();
 
@@ -46,4 +43,92 @@ void EditDialog::on_btnAdd_clicked()
         ui->tableWidget->setItem(ui->tableWidget->rowCount() - 1, 0, new QTableWidgetItem(siteA));
         ui->tableWidget->setItem(ui->tableWidget->rowCount() - 1, 1, new QTableWidgetItem(siteB));
     }
+}
+
+void EditDialog::on_btnSave_clicked()
+{
+    int rowCount = ui->tableWidget->rowCount();
+    int columnCount = ui->tableWidget->columnCount();
+    QList<QTableWidgetItem*> itemList;
+
+    for(int i = 0; i < rowCount; i++)
+    {
+        for(int k = 0; k < columnCount; k++)
+        {
+            QTableWidgetItem* item = ui->tableWidget->item(i, k);
+            itemList.append(item);
+
+            item = 0;
+        }
+    }
+
+    QFile file("C:/Users/Sonia/Desktop/el_database/" + filename);
+    if(!file.open(QIODevice::WriteOnly | QFile::Text)) {
+        QMessageBox::information(0, "error", file.errorString());
+    }
+
+    QTextStream out(&file);
+
+    int tmp = 0;
+    for(int i = 0; i < itemList.length(); i++)
+    {
+        if(tmp == 2)
+        {
+            out << "\n";
+            tmp = 0;
+        }
+        out << itemList.at(i)->text();
+
+        if(tmp == 0)
+            out << " ";
+
+        tmp++;
+    }
+
+    file.flush();
+    file.close();
+}
+
+QVector<QString> EditDialog::readFile(QString fileName){
+
+    QVector<QString> vRead;
+
+    QFile file("C:/Users/Sonia/Desktop/el_database/" + fileName);
+    if(!file.open(QIODevice::ReadOnly)) {
+        QMessageBox::information(0, "error", file.errorString());
+    }
+
+    QTextStream in(&file);
+    QStringList fields;
+
+    while(!in.atEnd()) {
+        QString line = in.readLine();
+        fields = line.split(" ");
+
+        for(int i = 0; i < fields.size(); i++){
+            vRead.append(fields.at(i));
+        }
+    }
+
+    file.close();
+    return vRead;
+}
+
+void EditDialog::addDataToQTableWidget(QVector<QString> vector)
+{
+    int j = 0;
+    for(int i = 0; i < vector.length()/2; i++)
+    {
+        ui->tableWidget->insertRow(ui->tableWidget->rowCount());
+        for(int k = 0; k < 2; k++){
+
+
+
+            ui->tableWidget->setItem(i, k, new QTableWidgetItem(vector.at(j)));
+
+            j++;
+        }
+    }
+
+    qDebug() << ui->tableWidget->rowCount();
 }

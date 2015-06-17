@@ -18,6 +18,12 @@ public:
 private slots:
     void on_btnAdd_clicked();
 
+    void on_btnSave_clicked();
+
+    QVector<QString> readFile(QString fileName);
+
+    void addDataToQTableWidget(QVector<QString> vector);
+
 private:
     Ui::EditDialog *ui;
     QString filename;
