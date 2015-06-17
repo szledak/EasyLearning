@@ -26,6 +26,8 @@ private slots:
 
     void on_btnDelete_clicked();
 
+    void checkRowCount();
+
 private:
     Ui::EditDialog *ui;
     QString filename;

@@ -19,6 +19,8 @@ EditDialog::EditDialog(QString fName, QWidget *parent) :
     ui->tableWidget->setHorizontalHeaderLabels(list);
 
     addDataToQTableWidget(readFile(filename));
+
+    checkRowCount();
 }
 
 EditDialog::~EditDialog()
@@ -32,7 +34,7 @@ void EditDialog::on_btnAdd_clicked()
     QString siteB = ui->edtSiteB->text();
 
     if(siteA.isEmpty() || siteB.isEmpty())
-        QMessageBox::warning(NULL, "Empty filename", "You did not enter a word!", "OK");
+        QMessageBox::warning(NULL, "Empty field", "You did not enter a word!", "OK");
     else
     {
         ui->edtSiteA->clear();
@@ -42,6 +44,8 @@ void EditDialog::on_btnAdd_clicked()
 
         ui->tableWidget->setItem(ui->tableWidget->rowCount() - 1, 0, new QTableWidgetItem(siteA));
         ui->tableWidget->setItem(ui->tableWidget->rowCount() - 1, 1, new QTableWidgetItem(siteB));
+
+        checkRowCount();
     }
 }
 
@@ -124,8 +128,6 @@ void EditDialog::addDataToQTableWidget(QVector<QString> vector)
         ui->tableWidget->insertRow(ui->tableWidget->rowCount());
         for(int k = 0; k < 2; k++){
 
-
-
             ui->tableWidget->setItem(i, k, new QTableWidgetItem(vector.at(j)));
 
             j++;
@@ -138,4 +140,22 @@ void EditDialog::addDataToQTableWidget(QVector<QString> vector)
 void EditDialog::on_btnDelete_clicked()
 {
     ui->tableWidget->removeRow(ui->tableWidget->currentRow());
+
+    checkRowCount();
+}
+
+void EditDialog::checkRowCount()
+{
+    int rowCount = ui->tableWidget->rowCount();
+
+    if(rowCount == 0)
+    {
+        ui->btnDelete->setEnabled(false);
+        ui->btnSave->setEnabled(false);
+    }
+    else
+    {
+        ui->btnDelete->setEnabled(true);
+        ui->btnSave->setEnabled(true);
+    }
 }
