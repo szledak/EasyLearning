@@ -15,13 +15,16 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     myword.cpp \
-    testdialog.cpp
+    testdialog.cpp \
+    editdialog.cpp
 
 HEADERS  += mainwindow.h \
     myword.h \
-    testdialog.h
+    testdialog.h \
+    editdialog.h
 
 FORMS    += mainwindow.ui \
-    testdialog.ui
+    testdialog.ui \
+    editdialog.ui
 
 DISTFILES +=

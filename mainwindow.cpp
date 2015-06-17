@@ -8,6 +8,7 @@
 #include <QStringListModel>
 #include <QDebug>
 #include "testdialog.h"
+#include "editdialog.h"
 #include <QCoreApplication>
 
 using namespace std;
@@ -234,4 +235,11 @@ void MainWindow::on_btnDelete_clicked()
         ui->cmbxFileList->clear();
         setComboBoxItems(getAllFileNames());
     }
+}
+
+void MainWindow::on_btnEdit_clicked()
+{
+    EditDialog editDialog;
+    editDialog.setModal(true);
+    editDialog.exec();
 }
