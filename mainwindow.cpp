@@ -77,7 +77,6 @@ void MainWindow::on_btnRemove_clicked()
     {
         QString str = list.at(selected.first().row());
 
-
         QVector<QString> vRemove = readFile(str);
 
         for(int i = 0; i < vGlobal.length(); i++)
@@ -101,11 +100,11 @@ void MainWindow::on_btnRemove_clicked()
         list.removeAt(selected.first().row());
         ((QStringListModel*) ui->listView->model())->setStringList(list);
 
-        qDebug() << str;
         vRemove.clear();
 
         if(list.isEmpty())
             ui->btnRemove->setEnabled(false);
+
         ui->btnStart->setEnabled(false);
     }
 }
@@ -183,14 +182,6 @@ QString MainWindow::getFileName(){
 void MainWindow::on_btnStart_clicked()
 {
     QVector<QString> vTest;
-
-
-
-    //TO DO: checked items
-
-
-    //    for(int i = 0; i < vTest.length(); i++)
-    //        qDebug() << vTest.at(i);
 
     bool flag = ui->rdbSiteA->isChecked();
     TestDialog testDialog(vGlobal, flag);
