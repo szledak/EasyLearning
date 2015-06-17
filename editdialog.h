@@ -12,11 +12,12 @@ class EditDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit EditDialog(QWidget *parent = 0);
+    explicit EditDialog(QString fName, QWidget *parent = 0);
     ~EditDialog();
 
 private:
     Ui::EditDialog *ui;
+    QString filename;
 };
 
 #endif // EDITDIALOG_H

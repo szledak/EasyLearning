@@ -224,7 +224,7 @@ void MainWindow::on_btnCreate_clicked()
 
 void MainWindow::on_btnDelete_clicked()
 {
-    QString filename =  ui->cmbxFileList->currentText();
+    QString filename =  getComboBoxCurrentText();
     QMessageBox::StandardButton reply;
     reply = QMessageBox::question(NULL, "Delete file", "Remove " + filename + " file?", QMessageBox::Yes|QMessageBox::No);
 
@@ -237,9 +237,14 @@ void MainWindow::on_btnDelete_clicked()
     }
 }
 
+QString MainWindow::getComboBoxCurrentText()
+{
+    return ui->cmbxFileList->currentText();
+}
+
 void MainWindow::on_btnEdit_clicked()
 {
-    EditDialog editDialog;
+    EditDialog editDialog(getComboBoxCurrentText());
     editDialog.setModal(true);
     editDialog.exec();
 }

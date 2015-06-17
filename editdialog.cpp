@@ -1,11 +1,15 @@
 #include "editdialog.h"
 #include "ui_editdialog.h"
+#include <QDebug>
 
-EditDialog::EditDialog(QWidget *parent) :
+EditDialog::EditDialog(QString fName, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::EditDialog)
 {
+    filename = fName;
     ui->setupUi(this);
+
+    this->setWindowTitle(filename);
 }
 
 EditDialog::~EditDialog()

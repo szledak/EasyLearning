@@ -40,6 +40,8 @@ private slots:
 
     void on_btnEdit_clicked();
 
+    QString getComboBoxCurrentText();
+
 private:
     Ui::MainWindow *ui;
     QStringListModel *model;
