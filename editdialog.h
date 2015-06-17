@@ -24,6 +24,8 @@ private slots:
 
     void addDataToQTableWidget(QVector<QString> vector);
 
+    void on_btnDelete_clicked();
+
 private:
     Ui::EditDialog *ui;
     QString filename;

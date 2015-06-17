@@ -87,6 +87,8 @@ void EditDialog::on_btnSave_clicked()
 
     file.flush();
     file.close();
+
+    QMessageBox::information(NULL, "Save file", "Save file: " + filename, "OK");
 }
 
 QVector<QString> EditDialog::readFile(QString fileName){
@@ -131,4 +133,9 @@ void EditDialog::addDataToQTableWidget(QVector<QString> vector)
     }
 
     qDebug() << ui->tableWidget->rowCount();
+}
+
+void EditDialog::on_btnDelete_clicked()
+{
+    ui->tableWidget->removeRow(ui->tableWidget->currentRow());
 }
