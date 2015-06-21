@@ -10,6 +10,7 @@
 #include "testdialog.h"
 #include "editdialog.h"
 #include <QCoreApplication>
+#include <QHeaderView>
 
 using namespace std;
 
@@ -19,6 +20,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     vGlobal.resize(0);
+
 
     setComboBoxItems(getAllFileNames());
 }
@@ -47,6 +49,8 @@ void MainWindow::on_btnSelectDB_clicked()
     showDataInTableView(tvModel, vGlobal);
 
     setListViewElements(fileName);
+
+    ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
     ui->tableView->setModel(tvModel);
     model->setStringList(list);

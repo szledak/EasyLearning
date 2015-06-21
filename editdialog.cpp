@@ -17,6 +17,7 @@ EditDialog::EditDialog(QString fName, QWidget *parent) :
     list << "Site A" << "Site B";
     ui->tableWidget->setColumnCount(2);
     ui->tableWidget->setHorizontalHeaderLabels(list);
+    ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
     addDataToQTableWidget(readFile(filename));
 
