@@ -256,31 +256,35 @@ void MainWindow::on_btnEdit_clicked()
 
 void MainWindow::clearData()
 {
-    QString str = getComboBoxCurrentText();
-    QString substring = str.replace(".txt", "");
 
-    QVector<QString> vRemove = readFile(substring);
 
-    for(int i = 0; i < vGlobal.length(); i++)
-        for(int k = 0; k < vRemove.length(); k++)
-        {
-            if(vGlobal.at(i) == vRemove.at(k))
+    if(!vGlobal.isEmpty())
+    {
+        QString str = getComboBoxCurrentText();
+        QString substring = str.replace(".txt", "");
+
+        QVector<QString> vRemove = readFile(substring);
+
+        for(int i = 0; i < vGlobal.length(); i++)
+            for(int k = 0; k < vRemove.length(); k++)
             {
-                vGlobal.removeAt(i);
-                showDataInTableView(tvModel, vGlobal);
-                ui->tableView->setModel(tvModel);
+                if(vGlobal.at(i) == vRemove.at(k))
+                {
+                    vGlobal.removeAt(i);
+                    showDataInTableView(tvModel, vGlobal);
+                    ui->tableView->setModel(tvModel);
+                }
             }
-        }
 
-    QStandardItemModel *tModel = new QStandardItemModel(0,0,this);
-    tModel->setHorizontalHeaderItem(0, new QStandardItem(QString("Site A")));
-    tModel->setHorizontalHeaderItem(1, new QStandardItem(QString("Site B")));
+        QStandardItemModel *tModel = new QStandardItemModel(0,0,this);
+        tModel->setHorizontalHeaderItem(0, new QStandardItem(QString("Site A")));
+        tModel->setHorizontalHeaderItem(1, new QStandardItem(QString("Site B")));
 
-    showDataInTableView(tModel, vGlobal);
-    ui->tableView->setModel(tModel);
+        showDataInTableView(tModel, vGlobal);
+        ui->tableView->setModel(tModel);
 
-    list.removeOne(substring);
-    ((QStringListModel*) ui->listView->model())->setStringList(list);
-    vRemove.clear();
-
+        list.removeOne(substring);
+        ((QStringListModel*) ui->listView->model())->setStringList(list);
+        vRemove.clear();
+    }
 }
