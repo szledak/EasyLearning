@@ -22,6 +22,7 @@ MainWindow::MainWindow(QWidget *parent) :
     vGlobal.resize(0);
 
     this->setFixedSize(this->width(),this->height());
+
     setComboBoxItems(getAllFileNames());
 }
 
@@ -227,6 +228,7 @@ void MainWindow::on_btnDelete_clicked()
 
         ui->cmbxFileList->clear();
         setComboBoxItems(getAllFileNames());
+        clearData();
     }
 }
 
@@ -236,13 +238,20 @@ QString MainWindow::getComboBoxCurrentText()
 }
 
 void MainWindow::on_btnEdit_clicked()
-{
+{ 
+    QMessageBox::StandardButton reply;
+    QString filename = getComboBoxCurrentText();
 
-    EditDialog editDialog(getComboBoxCurrentText());
-    editDialog.setModal(true);
-    editDialog.setWindowFlags( Qt::WindowTitleHint |  Qt::WindowCloseButtonHint | Qt::WindowSystemMenuHint);
-    clearData();
-    editDialog.exec();
+    reply = QMessageBox::question(NULL, "Edit file", "Edit " + filename + " file?", QMessageBox::Yes|QMessageBox::No);
+
+    if (reply == QMessageBox::Yes)
+    {
+        EditDialog editDialog(getComboBoxCurrentText());
+        editDialog.setModal(true);
+        editDialog.setWindowFlags( Qt::WindowTitleHint |  Qt::WindowCloseButtonHint | Qt::WindowSystemMenuHint);
+        clearData();
+        editDialog.exec();
+    }
 }
 
 void MainWindow::clearData()
