@@ -21,7 +21,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     vGlobal.resize(0);
 
-
+    this->setFixedSize(this->width(),this->height());
     setComboBoxItems(getAllFileNames());
 }
 

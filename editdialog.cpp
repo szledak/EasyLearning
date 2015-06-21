@@ -9,6 +9,7 @@ EditDialog::EditDialog(QString fName, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::EditDialog)
 {
+    this->setFixedSize(this->width(),this->height());
     filename = fName;
     ui->setupUi(this);
     this->setWindowTitle(filename);
