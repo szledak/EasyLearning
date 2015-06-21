@@ -9,7 +9,26 @@ TestDialog::TestDialog(QVector<QString> vGlobal, bool flag, QWidget *parent) :
     dGlobal = vGlobal;
     ui->setupUi(this);
     siteA = flag;
+
     testSize = dGlobal.size()/2;
+
+   startTest();
+
+    this->setFixedSize(this->width(),this->height());
+}
+
+TestDialog::~TestDialog()
+{
+    delete ui;
+}
+
+void TestDialog::startTest()
+{
+    ui->lblCorrectWord->setText("");
+    ui->lblCorrectCount->setText("Correct: 0" );
+    ui->lblWrongCount->setText("Wrong: 0" );
+    ui->btnNext->setEnabled(true);
+    ui->edtAnswer->setEnabled(true);
 
     correct = 0;
     wrong = 0;
@@ -19,13 +38,6 @@ TestDialog::TestDialog(QVector<QString> vGlobal, bool flag, QWidget *parent) :
     ui->lblCount->setText("Word: 1/" + QString::number(testSize));
 
     showQuestion();
-
-    this->setFixedSize(this->width(),this->height());
-}
-
-TestDialog::~TestDialog()
-{
-    delete ui;
 }
 
 void TestDialog::checkAnswer(QString str){
@@ -85,4 +97,9 @@ void TestDialog::showQuestion(){
         this->setWindowTitle("Site B");
     }
 
+}
+
+void TestDialog::on_pushButton_clicked()
+{
+    startTest();
 }

@@ -48,10 +48,8 @@ void MainWindow::on_btnSelectDB_clicked()
     QVector<QString> vRead = readFile(fileName);
 
     for(int i = 0; i < vRead.length(); i++)
-    {
         vGlobal.append(vRead.at(i));
-        qDebug() << vGlobal.at(i);
-    }
+
 
     vRead.clear();
 
@@ -255,6 +253,12 @@ void MainWindow::on_btnEdit_clicked()
         editDialog.setWindowFlags( Qt::WindowTitleHint |  Qt::WindowCloseButtonHint | Qt::WindowSystemMenuHint);
         clearData();
         editDialog.exec();
+
+        if(vGlobal.isEmpty())
+        {
+            ui->btnRemove->setEnabled(false);
+            ui->btnStart->setEnabled(false);
+        }
     }
 }
 

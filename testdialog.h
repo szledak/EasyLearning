@@ -19,6 +19,9 @@ private slots:
     void on_btnNext_clicked();
     void checkAnswer(QString str);
     void showQuestion();
+    void startTest();
+
+    void on_pushButton_clicked();
 
 private:
     Ui::TestDialog *ui;
