@@ -6,7 +6,6 @@ TestDialog::TestDialog(QVector<QString> vGlobal, bool flag, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::TestDialog)
 {
-    this->setFixedSize(this->width(),this->height());
     dGlobal = vGlobal;
     ui->setupUi(this);
     siteA = flag;
@@ -17,9 +16,11 @@ TestDialog::TestDialog(QVector<QString> vGlobal, bool flag, QWidget *parent) :
     count = 0;
     testCount = 1;
 
-    ui->lblCount->setText("1/" + QString::number(testSize));
+    ui->lblCount->setText("Word: 1/" + QString::number(testSize));
 
     showQuestion();
+
+    this->setFixedSize(this->width(),this->height());
 }
 
 TestDialog::~TestDialog()
@@ -59,7 +60,7 @@ void TestDialog::on_btnNext_clicked()
     {
         testCount++;
         count = count+2;
-        ui->lblCount->setText(QString::number(testCount) + "/" + QString::number(testSize));
+        ui->lblCount->setText("Word: " + QString::number(testCount) + "/" + QString::number(testSize));
 
         showQuestion();
     }
@@ -74,13 +75,13 @@ void TestDialog::showQuestion(){
     if(siteA == true)
     {
         ui->lblQuestion->setText(dGlobal.at(count));
-        ui->lblSite->setText("Site A");
+        this->setWindowTitle("Site A");
     }
 
     else
     {
         ui->lblQuestion->setText(dGlobal.at(count+1));
-        ui->lblSite->setText("Site B");
+        this->setWindowTitle("Site B");
     }
 
 }
