@@ -42,6 +42,8 @@ private slots:
 
     QString getComboBoxCurrentText();
 
+    void clearData();
+
 private:
     Ui::MainWindow *ui;
     QStringListModel *model;

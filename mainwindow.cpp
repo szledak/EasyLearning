@@ -42,7 +42,10 @@ void MainWindow::on_btnSelectDB_clicked()
     QVector<QString> vRead = readFile(fileName);
 
     for(int i = 0; i < vRead.length(); i++)
+    {
         vGlobal.append(vRead.at(i));
+        qDebug() << vGlobal.at(i);
+    }
 
     vRead.clear();
 
@@ -129,12 +132,6 @@ void MainWindow::showDataInTableView(QStandardItemModel *tvModel,  QVector<QStri
     {
         for(int k = 0; k < 2; k++){
             QStandardItem *item = new QStandardItem(vGlobal.at(j));
-
-            //            if(j % 2 == 0)
-            //            {
-            //                item->setCheckable(true);
-            //                item->setCheckState(Qt::Checked);
-            //            }
 
             item->setEditable(false);
             item->setSelectable(false);
@@ -240,8 +237,41 @@ QString MainWindow::getComboBoxCurrentText()
 
 void MainWindow::on_btnEdit_clicked()
 {
+
     EditDialog editDialog(getComboBoxCurrentText());
     editDialog.setModal(true);
     editDialog.setWindowFlags( Qt::WindowTitleHint |  Qt::WindowCloseButtonHint | Qt::WindowSystemMenuHint);
+    clearData();
     editDialog.exec();
+}
+
+void MainWindow::clearData()
+{
+    QString str = getComboBoxCurrentText();
+    QString substring = str.replace(".txt", "");
+
+    QVector<QString> vRemove = readFile(substring);
+
+    for(int i = 0; i < vGlobal.length(); i++)
+        for(int k = 0; k < vRemove.length(); k++)
+        {
+            if(vGlobal.at(i) == vRemove.at(k))
+            {
+                vGlobal.removeAt(i);
+                showDataInTableView(tvModel, vGlobal);
+                ui->tableView->setModel(tvModel);
+            }
+        }
+
+    QStandardItemModel *tModel = new QStandardItemModel(0,0,this);
+    tModel->setHorizontalHeaderItem(0, new QStandardItem(QString("Site A")));
+    tModel->setHorizontalHeaderItem(1, new QStandardItem(QString("Site B")));
+
+    showDataInTableView(tModel, vGlobal);
+    ui->tableView->setModel(tModel);
+
+    list.removeOne(substring);
+    ((QStringListModel*) ui->listView->model())->setStringList(list);
+    vRemove.clear();
+
 }
