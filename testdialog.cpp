@@ -6,6 +6,7 @@ TestDialog::TestDialog(QVector<QString> vGlobal, bool flag, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::TestDialog)
 {
+    this->setFixedSize(this->width(),this->height());
     dGlobal = vGlobal;
     ui->setupUi(this);
     siteA = flag;
@@ -17,7 +18,6 @@ TestDialog::TestDialog(QVector<QString> vGlobal, bool flag, QWidget *parent) :
     testCount = 1;
 
     ui->lblCount->setText("1/" + QString::number(testSize));
-    this->setFixedSize(this->width(),this->height());
 
     showQuestion();
 }
