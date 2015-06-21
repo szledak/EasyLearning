@@ -190,6 +190,7 @@ void MainWindow::on_btnStart_clicked()
     bool flag = ui->rdbSiteA->isChecked();
     TestDialog testDialog(vGlobal, flag);
     testDialog.setModal(true);
+    testDialog.setWindowFlags( Qt::WindowTitleHint |  Qt::WindowCloseButtonHint | Qt::WindowSystemMenuHint);
     testDialog.exec();
 }
 
