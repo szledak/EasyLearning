@@ -44,6 +44,7 @@ void TestDialog::checkAnswer(QString str){
         ++wrong;
         ui->lblWrongCount->setText("Wrong: " + QString::number(wrong));
         ui->lblCorrectWord->setText(str);
+        ui->lblCorrectWord->setStyleSheet("QLabel { color : red; }");
     }
 
     ui->edtAnswer->clear();
