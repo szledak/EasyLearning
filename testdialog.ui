@@ -6,9 +6,17 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>396</width>
-    <height>218</height>
+    <width>633</width>
+    <height>309</height>
    </rect>
+  </property>
+  <property name="font">
+   <font>
+    <family>Calibri</family>
+    <pointsize>10</pointsize>
+    <weight>75</weight>
+    <bold>true</bold>
+   </font>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
@@ -59,9 +67,9 @@
       </property>
       <property name="font">
        <font>
-        <weight>50</weight>
+        <weight>75</weight>
         <italic>false</italic>
-        <bold>false</bold>
+        <bold>true</bold>
         <strikeout>false</strikeout>
         <kerning>true</kerning>
        </font>
@@ -91,7 +99,14 @@
      </widget>
     </item>
     <item>
-     <widget class="QLineEdit" name="edtAnswer"/>
+     <widget class="QLineEdit" name="edtAnswer">
+      <property name="font">
+       <font>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>
@@ -101,7 +116,7 @@
      <x>220</x>
      <y>10</y>
      <width>160</width>
-     <height>191</height>
+     <height>285</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -154,6 +169,16 @@
      </widget>
     </item>
    </layout>
+  </widget>
+  <widget class="QLCDNumber" name="lcdNumber">
+   <property name="geometry">
+    <rect>
+     <x>560</x>
+     <y>10</y>
+     <width>64</width>
+     <height>23</height>
+    </rect>
+   </property>
   </widget>
  </widget>
  <resources/>
