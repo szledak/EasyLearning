@@ -241,5 +241,6 @@ void MainWindow::on_btnEdit_clicked()
 {
     EditDialog editDialog(getComboBoxCurrentText());
     editDialog.setModal(true);
+    editDialog.setWindowFlags( Qt::WindowTitleHint |  Qt::WindowCloseButtonHint | Qt::WindowSystemMenuHint);
     editDialog.exec();
 }

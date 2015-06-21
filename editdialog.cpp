@@ -20,8 +20,8 @@ EditDialog::EditDialog(QString fName, QWidget *parent) :
     ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
     addDataToQTableWidget(readFile(filename));
-    this->setFixedSize(this->width(),this->height());
 
+    this->setFixedSize(this->width(),this->height());
     checkRowCount();
 }
 
