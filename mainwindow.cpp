@@ -21,6 +21,13 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     vGlobal.resize(0);
 
+    tvModel = new QStandardItemModel(0,0,this);
+    tvModel->setHorizontalHeaderItem(0, new QStandardItem(QString("Site A")));
+    tvModel->setHorizontalHeaderItem(1, new QStandardItem(QString("Site B")));
+
+    ui->tableView->setModel(tvModel);
+    ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+
     this->setFixedSize(this->width(),this->height());
 
     setComboBoxItems(getAllFileNames());
@@ -33,9 +40,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_btnSelectDB_clicked()
 {
-    tvModel = new QStandardItemModel(0,0,this);
-    tvModel->setHorizontalHeaderItem(0, new QStandardItem(QString("Site A")));
-    tvModel->setHorizontalHeaderItem(1, new QStandardItem(QString("Site B")));
+
 
     model = new QStringListModel(this);
 
@@ -54,7 +59,6 @@ void MainWindow::on_btnSelectDB_clicked()
 
     setListViewElements(fileName);
 
-    ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
     ui->tableView->setModel(tvModel);
     model->setStringList(list);
